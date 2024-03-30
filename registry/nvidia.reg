@@ -1,0 +1,24 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\FTS]
+"EnableRID44231"=dword:0
+"EnableRID64640"=dword:0
+"EnableRID66610"=dword:0
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\NvControlPanel2\Client]
+"OptInOrOutPreference"=dword:0
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\NvTelemetryContainer]
+"Start"=dword:4
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\Startup\SendTelemetryData]
+@=dword:0
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\nvlddmkm\Global\Startup]
+"SendTelemetryData"=dword:0
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\NvTelemetryContainer]
+"Start"=dword:4
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\Startup\SendNonNvDisplayDetails]
+@=dword:0

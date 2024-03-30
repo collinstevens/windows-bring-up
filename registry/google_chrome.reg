@@ -1,0 +1,14 @@
+Windows Registry Editor Version 5.00
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Google\Chrome]
+"ChromeCleanupEnabled"="0"
+"ChromeCleanupReportingEnabled"="0"
+"MetricsReportingEnabled"="0"
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer]
+"DisallowRun"=dword:1
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\DisallowRun]
+"1"="software_reporter_tool.exe"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\software_reporter_tool.exe]
+"Debugger"="%windir%\\System32\\taskkill.exe"

@@ -1,0 +1,32 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo]
+"DisabledByGroupPolicy"=dword:1 ; Disable targeted advertising
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo]
+"Enabled"=dword:0 ; Disable targeted advertising
+
+[HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Explorer]
+"DisableSearchBoxSuggestions"=dword:1 ; Turn off display of recent search entries in the File Explorer search box
+"NoSearchInternetTryHarderButton"=dword:1 ; Remove the Search the Internet "Search again" link
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CredUI]
+"DisablePasswordReveal"=dword:1 ; Disable Windows Password Reveal Option
+
+[HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CloudContent]
+"DisableConsumerAccountStateContent"=dword:1 ; Turn off cloud consumer account state content
+"DisableCloudOptimizedContent"=dword:1 ; Turn off cloud optimized content
+"DisableSoftLanding"=dword:1 ; Do not show Windows tips
+"DisableWindowsConsumerFeatures"=dword:1 ; Turn off Microsoft consumer experiences
+
+; https://admx.help/HKCU/Software/Policies/Microsoft/Windows/CloudContent
+[HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\CloudContent]
+"DisableWindowsSpotlightWindowsWelcomeExperience"=dword:1 ; Turn off the Windows Welcome Experience
+"DisableWindowsSpotlightOnSettings"=dword:1 ; Turn off Windows Spotlight on Settings
+"DisableWindowsSpotlightOnActionCenter"=dword:1 ; Turn off Windows Spotlight on Action Center
+"DisableThirdPartySuggestions"=dword:1 ; Do not suggest third-party content in Windows spotlight
+"DisableSpotlightCollectionOnDesktop"=dword:1 ; Turn off Spotlight collection on Desktop
+"DisableTailoredExperiencesWithDiagnosticData"=dword:1 ; Do not use diagnostic data for tailored experiences
+"DisableWindowsSpotlightFeatures"=dword:1 ; Turn off all Windows spotlight features
+"ConfigureWindowsSpotlight"=dword:2 ; Configure Windows spotlight on lock screen
+"IncludeEnterpriseSpotlight"=dword:0 ; Configure Windows spotlight on lock screen

@@ -1,0 +1,5 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Mozilla\Firefox]
+"DisableTelemetry"=dword:1
+"DisableDefaultBrowserAgent"=dword:1

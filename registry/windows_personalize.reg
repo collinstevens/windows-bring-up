@@ -1,0 +1,111 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\GameDVR]
+"AllowgameDVR"=dword:0
+
+[HKEY_CURRENT_USER\System\GameConfigStore]
+"GameDVR_Enabled"=dword:0
+
+[HKEY_LOCAL_MACHINE\System\GameConfigStore]
+"GameDVR_Enabled"=dword:0
+
+[HKEY_LOCAL_MACHINE\oftware\CurrentControlSet\Control]
+"SvcHostSplitThresholdInKB"=dword:04000000
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\GameDVR]
+"AppCaptureEnabled"=dword:0
+"HistoricalCaptureEnabled"=dword:0
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\GameDVR]
+"AppCaptureEnabled"=dword:0
+"HistoricalCaptureEnabled"=dword:0
+
+[HKEY_CURRENT_USER\Control Panel\Desktop]
+"WindowArrangementActive"="1" ; Enable Snap Windows
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+"EnableSnapAssistFlyout"=dword:1 ; When I snap a window, suggest what I can snap next to it
+"SnapAssist"=dword:0 ; Show snap layouts when I hover over a window's maximize button
+"EnableSnapBar"=dword:0 ; Show snap layouts when I drag a window to the top of my screen
+"EnableTaskGroups"=dword:0 ; Show my snapped windows when I hover over taskbar apps, in Task View, and when I press Alt+Tab
+"DITest"=dword:0 ; When I drag a window, let me snap it without dragging all the way to the screen edge
+
+; Disable filter keys
+[HKEY_CURRENT_USER\Control Panel\Accessibility\Keyboard Response]
+"AutoRepeatDelay"="0"
+"AutoRepeatRate"="0"
+"BounceTime"="0"
+"DelayBeforeAcceptance"="0"
+"Flags"="2"
+
+[HKEY_CURRENT_USER\Control Panel\Accessibility\StickyKeys]
+"Flags"="2" ; Disable sticky keys
+
+[HKEY_CURRENT_USER\Control Panel\Accessibility\ToggleKeys]
+"Flags"="38" ; Disable toggle keys
+
+; Disable ease of access sounds
+[HKEY_CURRENT_USER\Control Panel\Accessibility]
+"Sound on Activation"=dword:0
+"Warning Sounds"=dword:0
+
+; Disable language and input hotkeys
+[HKEY_CURRENT_USER\Keyboard Layout\Toggle]
+"Language Hotkey"="3"
+"Hotkey"="3"
+"Layout Hotkey"="3"
+
+[HKEY_CURRENT_USER\Control Panel\Accessibility\HighContrast]
+"Flags"="4218" ; Disable high contrast keyboard shortcut
+
+[HKEY_CURRENT_USER\Software\Classes\CLSID\{86CA1AA0-34AA-4E8B-A509-50C905BAE2A2}\InprocServer32]
+@="" ; Restore Windows 10 context menu
+
+[HKEY_CURRENT_USER\Software\Microsoft\Narrator\NoRoam]
+"WinEnterLaunchEnabled"=dword:0 ; Disable narrator keyboard shortcut
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer]
+"ShowRecent"=dword:0 ; Disable show recently used files in file explorer
+"ShowFrequent"=dword:0 ; Disable show frequently used folders in file explorer
+"ShowCloudFilesInQuickAccess"=dword:0
+"ShowRecommendations"=dword:0
+"IrisClientRefresh"=dword:1
+"link"=hex:1c,00,00,00
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+"DisallowShaking"=dword:1 ; Disable aero shake
+"DontPrettyPath"=dword:0 ; Don't change the upper/lower case of filenames
+"Hidden"=dword:1 ; Show hidden files and folders
+"HideFileExt"=dword:0 ; Don't hide file extensions
+"ShowCopilotButton"=dword:0 ; Hide the copilot button
+"ShowSyncProviderNotifications"=dword:1 ; Don't show notifications/adverts (onedrive & new feature alerts) in Windows explorer
+"ShowTaskViewButton"=dword:0 ; Hide the task view button
+"Start_SearchFiles"=dword:1 ; Don't slow down search by including all public folders
+"Start_ShowMyGames"=dword:0 ; Don't add a games shortcut to the start menu
+"Start_TrackDocs"=dword:1 ; Show recently opened items in start, jump lists, and file explorer
+"Start_TrackProgs"=dword:1 ; Let Windows track app launches to improve start and search results
+"TaskbarAl"=dword:0 ; Align taskbar to the left
+
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize]
+"SystemUsesLightTheme"=dword:0 ; Use dark node for operating system
+"ColorPrevalence"=dword:0 ; Disable taskbar color
+"EnableTransparency"=dword:0 ; Disable transparency effects
+"AppsUseLightTheme"=dword:0 ; Use dark node for applications
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer]
+"DisableGraphRecentItems"=dword:1 ; Disable show files from Office.com
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer]
+"HubMode"=dword:1 ; Adjust layout of file explorer left layout to remove bar below section where Home would be
+
+;  Remove Home from Navigation Pane in File Explorer for All Users
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace_36354489\{f874310e-b6b7-47dc-bc84-b9e6b38f5903}]
+
+;  Remove Gallery from Navigation Pane in File Explorer for All Users
+[-HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace_41040327\{e88865ea-0e1c-4e20-9aa6-edcd0212c87c}]
+
+[HKEY_LOCAL_MACHINE\SYSTEM\Maps]
+"AutoUpdateEnabled"=dword:0 ; Disable automatic map updates
+
+[HKEY_CURRENT_USER\Console]
+"VirtualTerminalLevel"=dword:1 ; Enabling ANSI colors in older versions of Windows
