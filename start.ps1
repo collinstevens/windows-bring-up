@@ -134,6 +134,7 @@ winget install --id Microsoft.UI.Xaml.2.7 --exact --accept-package-agreements --
 winget install --id Microsoft.UI.Xaml.2.8 --exact --accept-package-agreements --accept-source-agreements --source winget
 winget install --id Microsoft.VCRedist.2015+.x64 --exact --accept-package-agreements --accept-source-agreements --source winget
 winget install --id Microsoft.WinDbg --exact --accept-package-agreements --accept-source-agreements --source winget
+winget install --id Microsoft.WindowsAppRuntime.1.5 --exact --accept-package-agreements --accept-source-agreements --source winget
 winget install --id Microsoft.WindowsSDK.10.0.22621 --exact --accept-package-agreements --accept-source-agreements --source winget
 winget install --id Microsoft.WindowsTerminal --exact --accept-package-agreements --accept-source-agreements --source winget
 winget install --id Microsoft.WindowsWDK.10.0.22621 --exact --accept-package-agreements --accept-source-agreements --source winget
