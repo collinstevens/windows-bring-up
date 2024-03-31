@@ -134,12 +134,19 @@ winget install --id Microsoft.UI.Xaml.2.7 --exact --accept-package-agreements --
 winget install --id Microsoft.UI.Xaml.2.8 --exact --accept-package-agreements --accept-source-agreements --source winget
 winget install --id Microsoft.VCRedist.2015+.x64 --exact --accept-package-agreements --accept-source-agreements --source winget
 winget install --id Microsoft.WinDbg --exact --accept-package-agreements --accept-source-agreements --source winget
+winget install --id Microsoft.WindowsSDK.10.0.22621 --exact --accept-package-agreements --accept-source-agreements --source winget
 winget install --id Microsoft.WindowsTerminal --exact --accept-package-agreements --accept-source-agreements --source winget
+winget install --id Microsoft.WindowsWDK.10.0.22621 --exact --accept-package-agreements --accept-source-agreements --source winget
 winget install --id Mozilla.Firefox --accept-package-agreements --accept-source-agreements --source winget
 winget install --id Python.Python.3.10 --exact --accept-package-agreements --accept-source-agreements --source winget
 winget install --id SlackTechnologies.Slack --exact --accept-package-agreements --accept-source-agreements --source winget
 winget install --id Spotify.Spotify --accept-package-agreements --accept-source-agreements --source winget
 winget install --id voidtools.Everything --exact --accept-package-agreements --accept-source-agreements --source winget
+
+# https://learn.microsoft.com/en-us/visualstudio/install/use-command-line-parameters-to-install-visual-studio?view=vs-2022#use-winget-to-install-or-modify-visual-studio
+# winget install --source winget --exact --id Microsoft.VisualStudio.2022.Community --override "--passive --config <vsconfig-folder>\wdk.vsconfig"
+# https://learn.microsoft.com/en-us/windows-hardware/drivers/install-the-wdk-using-winget#step-3-install-wdk-visual-studio-extension
+# & $(& "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -nologo -latest -products * -property enginePath | Join-Path -ChildPath 'VSIXInstaller.exe') "${env:ProgramFiles(x86)}\Windows Kits\10\Vsix\VS2022\10.0.22621.0\WDK.vsix"
 
 if (!$IsEmployerMachine) {
     winget install --id Discord.Discord --exact --accept-package-agreements --accept-source-agreements --source winget
