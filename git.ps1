@@ -1,5 +1,5 @@
-git config --global user.name "Collin Stevens"
-git config --global user.email "github@collinstevens.com"
+# git config --global user.name "Collin Stevens"
+# git config --global user.email "github@collinstevens.com"
 git config --global init.defaultBranch master
 git config --global push.autoSetupRemote true
 git config --global core.autoclrf false
