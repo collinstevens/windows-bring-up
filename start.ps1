@@ -1,6 +1,6 @@
 param(
-    [Parameter(HelpMessage="Excludes packages which shouldn't be installed on an employer-provided machine.")]
-    [switch]$IsEmployerMachine,
+    [Parameter(HelpMessage="Include packages which shouldn't be installed on an employer-provided machine.")]
+    [switch]$IsPersonalMachine,
 
     [Parameter(Mandatory=$true, HelpMessage="The drive to use for environment variables (typically a DevDrive")]
     [ValidateScript({
@@ -268,7 +268,6 @@ $WinGetSettingsFile = "$env:LOCALAPPDATA\Packages\Microsoft.DesktopAppInstaller_
 '@ | Out-File "$WinGetSettingsFile"
 
 winget install --id 7zip.7zip --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id AgileBits.1Password --exact --accept-package-agreements --accept-source-agreements --source winget
 winget install --id Docker.DockerDesktop --exact --accept-package-agreements --accept-source-agreements --source winget
 winget install --id Git.Git --exact --accept-package-agreements --accept-source-agreements --source winget
 winget install --id Google.Chrome --exact --accept-package-agreements --accept-source-agreements --source winget
@@ -314,7 +313,8 @@ winget install --id voidtools.Everything --exact --accept-package-agreements --a
 # https://learn.microsoft.com/en-us/windows-hardware/drivers/install-the-wdk-using-winget#step-3-install-wdk-visual-studio-extension
 # & $(& "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -nologo -latest -products * -property enginePath | Join-Path -ChildPath 'VSIXInstaller.exe') "${env:ProgramFiles(x86)}\Windows Kits\10\Vsix\VS2022\10.0.22621.0\WDK.vsix"
 
-if (!$IsEmployerMachine) {
+if ($IsPersonalMachine) {
+    winget install --id AgileBits.1Password --exact --accept-package-agreements --accept-source-agreements --source winget
     winget install --id Discord.Discord --exact --accept-package-agreements --accept-source-agreements --source winget
     winget install --id qBittorrent.qBittorrent --exact --accept-package-agreements --accept-source-agreements --source winget
     winget install --id Valve.Steam --exact --accept-package-agreements --accept-source-agreements --source winget
