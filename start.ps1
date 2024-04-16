@@ -3,6 +3,11 @@ param(
     [switch]$IsEmployerMachine
 )
 
+if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+    Write-Host "This script requires administrator privileges. Please run it as an administrator."
+    Exit
+}
+
 $env:POWERSHELL_TELEMETRY_OPTOUT = 1
 [Environment]::SetEnvironmentVariable('POWERSHELL_Telemetry_OPTOUT', 1 , [System.EnvironmentVariableTarget]::Machine)
 [Environment]::SetEnvironmentVariable('DOTNET_CLI_TELEMETRY_OPTOUT', 1, [EnvironmentVariableTarget]::Machine)
@@ -105,94 +110,94 @@ $WinGetSettingsFile = "$env:LOCALAPPDATA\Packages\Microsoft.DesktopAppInstaller_
 }
 '@ | Out-File "$WinGetSettingsFile"
 
-winget install --id 7zip.7zip --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id AgileBits.1Password --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Docker.DockerDesktop --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Git.Git --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Google.Chrome --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id JetBrains.Toolbox --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.AppInstaller --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.Azure.StorageExplorer --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.DotNet.Framework.DeveloperPack_4 --version 4.6.2 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.DotNet.Framework.DeveloperPack_4 --version 4.7 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.DotNet.Framework.DeveloperPack_4 --version 4.7.1 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.DotNet.Framework.DeveloperPack_4 --version 4.7.2 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.DotNet.Framework.DeveloperPack_4 --version 4.8 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.DotNet.Framework.DeveloperPack_4 --version 4.8.1 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.DotNet.Framework.DeveloperPack.4.5 --version 4.5.1 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.DotNet.Framework.DeveloperPack.4.5 --version 4.5.2 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.DotNet.SDK.3_1 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.DotNet.SDK.5 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.DotNet.SDK.6 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.DotNet.SDK.7 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.DotNet.SDK.8 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.PerfView --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.PowerShell --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.PowerToys --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.SQLServerManagementStudio --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.Sysinternals.ProcessExplorer --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.Sysinternals.ProcessMonitor --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.TimeTravelDebugging --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.UI.Xaml.2.7 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.UI.Xaml.2.8 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.VCRedist.2015+.x64 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.WinDbg --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.WindowsAppRuntime.1.5 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.WindowsSDK.10.0.22621 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.WindowsTerminal --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Microsoft.WindowsWDK.10.0.22621 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Mozilla.Firefox --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Python.Python.3.10 --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id SlackTechnologies.Slack --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Spotify.Spotify --accept-package-agreements --accept-source-agreements --source winget
-winget install --id voidtools.Everything --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id 7zip.7zip --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id AgileBits.1Password --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Docker.DockerDesktop --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Git.Git --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Google.Chrome --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id JetBrains.Toolbox --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.AppInstaller --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.Azure.StorageExplorer --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.DotNet.Framework.DeveloperPack_4 --version 4.6.2 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.DotNet.Framework.DeveloperPack_4 --version 4.7 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.DotNet.Framework.DeveloperPack_4 --version 4.7.1 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.DotNet.Framework.DeveloperPack_4 --version 4.7.2 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.DotNet.Framework.DeveloperPack_4 --version 4.8 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.DotNet.Framework.DeveloperPack_4 --version 4.8.1 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.DotNet.Framework.DeveloperPack.4.5 --version 4.5.1 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.DotNet.Framework.DeveloperPack.4.5 --version 4.5.2 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.DotNet.SDK.3_1 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.DotNet.SDK.5 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.DotNet.SDK.6 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.DotNet.SDK.7 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.DotNet.SDK.8 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.PerfView --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.PowerShell --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.PowerToys --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.SQLServerManagementStudio --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.Sysinternals.ProcessExplorer --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.Sysinternals.ProcessMonitor --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.TimeTravelDebugging --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.UI.Xaml.2.7 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.UI.Xaml.2.8 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.VCRedist.2015+.x64 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.WinDbg --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.WindowsAppRuntime.1.5 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.WindowsSDK.10.0.22621 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.WindowsTerminal --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Microsoft.WindowsWDK.10.0.22621 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Mozilla.Firefox --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Python.Python.3.10 --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id SlackTechnologies.Slack --exact --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id Spotify.Spotify --accept-package-agreements --accept-source-agreements --source winget
+# winget install --id voidtools.Everything --exact --accept-package-agreements --accept-source-agreements --source winget
 
-# https://learn.microsoft.com/en-us/visualstudio/install/use-command-line-parameters-to-install-visual-studio?view=vs-2022#use-winget-to-install-or-modify-visual-studio
-# winget install --source winget --exact --id Microsoft.VisualStudio.2022.Community --override "--passive --config <vsconfig-folder>\wdk.vsconfig"
-# https://learn.microsoft.com/en-us/windows-hardware/drivers/install-the-wdk-using-winget#step-3-install-wdk-visual-studio-extension
-# & $(& "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -nologo -latest -products * -property enginePath | Join-Path -ChildPath 'VSIXInstaller.exe') "${env:ProgramFiles(x86)}\Windows Kits\10\Vsix\VS2022\10.0.22621.0\WDK.vsix"
+# # https://learn.microsoft.com/en-us/visualstudio/install/use-command-line-parameters-to-install-visual-studio?view=vs-2022#use-winget-to-install-or-modify-visual-studio
+# # winget install --source winget --exact --id Microsoft.VisualStudio.2022.Community --override "--passive --config <vsconfig-folder>\wdk.vsconfig"
+# # https://learn.microsoft.com/en-us/windows-hardware/drivers/install-the-wdk-using-winget#step-3-install-wdk-visual-studio-extension
+# # & $(& "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -nologo -latest -products * -property enginePath | Join-Path -ChildPath 'VSIXInstaller.exe') "${env:ProgramFiles(x86)}\Windows Kits\10\Vsix\VS2022\10.0.22621.0\WDK.vsix"
 
-if (!$IsEmployerMachine) {
-    winget install --id Discord.Discord --exact --accept-package-agreements --accept-source-agreements --source winget
-    winget install --id qBittorrent.qBittorrent --exact --accept-package-agreements --accept-source-agreements --source winget
-    winget install --id Valve.Steam --exact --accept-package-agreements --accept-source-agreements --source winget
-}
+# if (!$IsEmployerMachine) {
+#     winget install --id Discord.Discord --exact --accept-package-agreements --accept-source-agreements --source winget
+#     winget install --id qBittorrent.qBittorrent --exact --accept-package-agreements --accept-source-agreements --source winget
+#     winget install --id Valve.Steam --exact --accept-package-agreements --accept-source-agreements --source winget
+# }
 
-winget uninstall --id 'OneNoteFreeRetail - en-us' --exact
-winget uninstall --id Adobe.Acrobat.Reader.32-bit --exact
-winget uninstall --id Clipchamp.Clipchamp_yxz26nhyzhsrt --exact
-winget uninstall --id Microsoft.BingNews_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.BingWeather_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.GetHelp_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.Getstarted_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.Getstarted_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.Ink.Handwriting.en-US.1.0_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.Ink.Handwriting.Main.en-US.1.0.1_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.MicrosoftJournal_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.OutlookForWindows_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.People_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.Whiteboard_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.WindowsCamera_8wekyb3d8bbwe --exact
-winget uninstall --id microsoft.windowscommunicationsapps_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.WindowsMaps_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.WindowsNotepad_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.WindowsSoundRecorder_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.YourPhone_8wekyb3d8bbwe --exact
-winget uninstall --id Microsoft.ZuneMusic_8wekyb3d8bbwe --exact
-winget uninstall --id MicrosoftCorporationII.QuickAssist_8wekyb3d8bbwe --exact
-winget uninstall --name '3D Viewer' --exact
+# winget uninstall --id 'OneNoteFreeRetail - en-us' --exact
+# winget uninstall --id Adobe.Acrobat.Reader.32-bit --exact
+# winget uninstall --id Clipchamp.Clipchamp_yxz26nhyzhsrt --exact
+# winget uninstall --id Microsoft.BingNews_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.BingWeather_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.GetHelp_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.Getstarted_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.Getstarted_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.Ink.Handwriting.en-US.1.0_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.Ink.Handwriting.Main.en-US.1.0.1_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.MicrosoftJournal_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.OutlookForWindows_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.People_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.Whiteboard_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.WindowsCamera_8wekyb3d8bbwe --exact
+# winget uninstall --id microsoft.windowscommunicationsapps_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.WindowsMaps_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.WindowsNotepad_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.WindowsSoundRecorder_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.YourPhone_8wekyb3d8bbwe --exact
+# winget uninstall --id Microsoft.ZuneMusic_8wekyb3d8bbwe --exact
+# winget uninstall --id MicrosoftCorporationII.QuickAssist_8wekyb3d8bbwe --exact
+# winget uninstall --name '3D Viewer' --exact
 
-wsl --install --no-distribution --no-launch
+# wsl --install --no-distribution --no-launch
 
 # Enable Windows Sandbox
-Enable-WindowsOptionalFeature -FeatureName "Containers-DisposableClientVM" -All -Online -NoRestart
+# Enable-WindowsOptionalFeature -FeatureName "Containers-DisposableClientVM" -All -Online -NoRestart
 
 # Generate a self-signed certificate to enable HTTPS in development:
-dotnet dev-certs https --trust
+# dotnet dev-certs https --trust
 
 function TryDisable-Service {
     param (
