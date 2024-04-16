@@ -242,7 +242,7 @@ Disable-ScheduledTaskIfEnabled 'Firefox Default Browser Agent D2CEEC440E2074BD' 
 $WinGetSettingsFile = "$env:LOCALAPPDATA\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json"
 @'
 {
-    '$schema": "https://aka.ms/winget-settings.schema.json",
+    "$schema": "https://aka.ms/winget-settings.schema.json",
     "experimentalFeatures": {
         "configuration": true
     },
