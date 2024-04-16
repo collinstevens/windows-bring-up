@@ -212,7 +212,8 @@ Disable-ServiceIfEnabled 'MessagingService'
 Disable-ServiceIfEnabled 'PimIndexMaintenanceSvc' 
 Disable-ServiceIfEnabled 'RetailDemo' 
 Disable-ServiceIfEnabled 'MapsBroker' 
-Disable-ServiceIfEnabled 'DoSvc' 
+# DoSvc (Delivery Optimization) doesn't allow itself to be disabled, even under Administrator
+# Disable-ServiceIfEnabled 'DoSvc' 
 Disable-ServiceIfEnabled 'OneSyncSvc' 
 Disable-ServiceIfEnabled 'UnistoreSvc' 
 
