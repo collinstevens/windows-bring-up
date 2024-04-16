@@ -5,79 +5,82 @@ param(
 
 $env:POWERSHELL_TELEMETRY_OPTOUT = 1
 [Environment]::SetEnvironmentVariable('POWERSHELL_Telemetry_OPTOUT', 1 , [System.EnvironmentVariableTarget]::Machine)
-[Environment]::SetEnvironmentVariable("DOTNET_CLI_TELEMETRY_OPTOUT", 1, [EnvironmentVariableTarget]::Machine)
-[Environment]::SetEnvironmentVariable("MSBUILDTERMINALLOGGER", "auto", [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('DOTNET_CLI_TELEMETRY_OPTOUT', 1, [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('MSBUILDTERMINALLOGGER', 'auto', [EnvironmentVariableTarget]::Machine)
 
 # Create Dev Drive
 # diskpart /s create-dev-drive.diskpart
 # Get-Disk 2 | New-Volume -DriveLetter E -FriendlyName E | Format-Volume -DevDrive
 
-[Environment]::SetEnvironmentVariable("CARGO_HOME", "D:\packages\cargo", [EnvironmentVariableTarget]::Machine)
-[Environment]::SetEnvironmentVariable("MAVEN_OPTS", "D:\packages\maven", [EnvironmentVariableTarget]::Machine)
-[Environment]::SetEnvironmentVariable("npm_config_cache", "D:\packages\npm", [EnvironmentVariableTarget]::Machine)
-[Environment]::SetEnvironmentVariable("PIP_CACHE_DIR", "D:\packages\pip", [EnvironmentVariableTarget]::Machine)
-[Environment]::SetEnvironmentVariable("PNPM_HOME", "D:\packages\pnpm", [EnvironmentVariableTarget]::Machine)
-[Environment]::SetEnvironmentVariable("VCPKG_DEFAULT_BINARY_CACHE", "D:\packages\vcpkg", [EnvironmentVariableTarget]::Machine)
-[Environment]::SetEnvironmentVariable("TEMP", "D:\TEMP", [EnvironmentVariableTarget]::Machine)
-[Environment]::SetEnvironmentVariable("TMP", "D:\TEMP", [EnvironmentVariableTarget]::Machine)
-[Environment]::SetEnvironmentVariable("TEMP", $null, [EnvironmentVariableTarget]::User)
-[Environment]::SetEnvironmentVariable("TMP", $null, [EnvironmentVariableTarget]::User)
+[Environment]::SetEnvironmentVariable('CARGO_HOME', 'D:\packages\cargo', [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('MAVEN_OPTS', 'D:\packages\maven', [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('npm_config_cache', 'D:\packages\npm', [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('PIP_CACHE_DIR', 'D:\packages\pip', [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('PNPM_HOME', 'D:\packages\pnpm', [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('VCPKG_DEFAULT_BINARY_CACHE', 'D:\packages\vcpkg', [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('TEMP', 'D:\TEMP', [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('TMP', 'D:\TEMP', [EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('TEMP', $null, [EnvironmentVariableTarget]::User)
+[Environment]::SetEnvironmentVariable('TMP', $null, [EnvironmentVariableTarget]::User)
 
 $MachineEnvironmentKey = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey('SYSTEM\CurrentControlSet\Control\Session Manager\Environment', $true)
 $MachinePath = $MachineEnvironmentKey.GetValue('Path', $null, [Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames)
 $MachinePathSplit = $MachinePath -Split ';'
 
-if ($MachinePathSplit -notcontains "%PNPM_HOME%") {
-    $MachinePath += ";%PNPM_HOME%"
+if ($MachinePathSplit -notcontains '%PNPM_HOME%') {
+    $MachinePath += ';%PNPM_HOME%'
 }
 
 $MachineEnvironmentKey.SetValue('Path', $MachinePath, [Microsoft.Win32.RegistryValueKind]::ExpandString)
 
-Set-Service "Razer Game Scanner Service" -StartupType Disabled -PassThru | Stop-Service
+# Set the Windows Time service to start automatically:
+Set-Service -Name W32Time -StartupType Automatic
+
+TryDisable-Service 'Razer Game Scanner Service'
 
 # Disable Microsoft Office Telemetry
-Get-ScheduledTask -TaskName "OfficeTelemetryAgentFallBack2016" | Disable-ScheduledTask
-Get-ScheduledTask -TaskName "OfficeTelemetryAgentLogOn2016" | Disable-ScheduledTask
-Get-ScheduledTask -TaskName "OfficeTelemetryAgentFallBack" | Disable-ScheduledTask
-Get-ScheduledTask -TaskName "OfficeTelemetryAgentLogOn" | Disable-ScheduledTask
+TryDisable-ScheduledTask -TaskName 'OfficeTelemetryAgentFallBack2016'
+TryDisable-ScheduledTask -TaskName 'OfficeTelemetryAgentLogOn2016'
+TryDisable-ScheduledTask -TaskName 'OfficeTelemetryAgentFallBack'
+TryDisable-ScheduledTask -TaskName 'OfficeTelemetryAgentLogOn'
 
 # Disable Office Subscription Heartbeat
-Get-ScheduledTask -TaskName "Microsoft\Office\Office 15 Subscription Heartbeat" | Disable-ScheduledTask
-Get-ScheduledTask -TaskName "Microsoft\Office\Office 16 Subscription Heartbeat" | Disable-ScheduledTask
+TryDisable-ScheduledTask -TaskName 'Microsoft\Office\Office 15 Subscription Heartbeat'
+TryDisable-ScheduledTask -TaskName 'Microsoft\Office\Office 16 Subscription Heartbeat'
 
 # Disable Visual Studio Telemetry
-Set-Service "VSStandardCollectorService150" -StartupType Disabled -PassThru | Stop-Service
+TryDisable-Service 'VSStandardCollectorService150' 
 
 # Disable Unnecessary Windows Services
-Set-Service "MessagingService" -StartupType Disabled -PassThru | Stop-Service
-Set-Service "PimIndexMaintenanceSvc" -StartupType Disabled -PassThru | Stop-Service
-Set-Service "RetailDemo" -StartupType Disabled -PassThru | Stop-Service
-Set-Service "MapsBroker" -StartupType Disabled -PassThru | Stop-Service
-Set-Service "DoSvc" -StartupType Disabled -PassThru | Stop-Service
-Set-Service "OneSyncSvc" -StartupType Disabled -PassThru | Stop-Service
-Set-Service "UnistoreSvc" -StartupType Disabled -PassThru | Stop-Service
+TryDisable-Service 'MessagingService' 
+TryDisable-Service 'PimIndexMaintenanceSvc' 
+TryDisable-Service 'RetailDemo' 
+TryDisable-Service 'MapsBroker' 
+TryDisable-Service 'DoSvc' 
+TryDisable-Service 'OneSyncSvc' 
+TryDisable-Service 'UnistoreSvc' 
 
 # Disable Windows Error Reporting
-Get-ScheduledTask -TaskName "QueueReporting" | Disable-ScheduledTask
+TryDisable-ScheduledTask -TaskName 'QueueReporting'
 
 # Disable NVIDIA Telemetry
-Set-Service NvTelemetryContainer -StartupType Disabled -PassThru | Stop-Service
+TryDisable-Service NvTelemetryContainer 
 
 # Delete NVIDIA telemetry files
 Remove-Item -Recurse "$env:SystemDrive\System32\DriverStore\FileRepository\NvTelemetry*.dll"
 Remove-Item -Recurse "$env:ProgramFiles\NVIDIA Corporation\NvTelemetry" | Out-Null
 
 # Disable Windows Media Player Telemetry
-Set-Service WMPNetworkSvc -StartupType Disabled -PassThru | Stop-Service
+TryDisable-Service WMPNetworkSvc 
 
 # Disable Mozilla Firefox Telemetry
-Get-ScheduledTask "\Mozilla\Firefox Default Browser Agent 308046B0AF4A39CB" | Disable-ScheduledTask
-Get-ScheduledTask "\Mozilla\Firefox Default Browser Agent D2CEEC440E2074BD" | Disable-ScheduledTask
+TryDisable-ScheduledTask '\Mozilla\Firefox Default Browser Agent 308046B0AF4A39CB'
+TryDisable-ScheduledTask '\Mozilla\Firefox Default Browser Agent D2CEEC440E2074BD'
 
 $WinGetSettingsFile = "$env:LOCALAPPDATA\Packages\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe\LocalState\settings.json"
 @'
 {
-    "$schema": "https://aka.ms/winget-settings.schema.json",
+    '$schema": "https://aka.ms/winget-settings.schema.json",
     "experimentalFeatures": {
         "configuration": true
     },
@@ -155,7 +158,7 @@ if (!$IsEmployerMachine) {
     winget install --id Valve.Steam --exact --accept-package-agreements --accept-source-agreements --source winget
 }
 
-winget uninstall --id "OneNoteFreeRetail - en-us" --exact
+winget uninstall --id 'OneNoteFreeRetail - en-us' --exact
 winget uninstall --id Adobe.Acrobat.Reader.32-bit --exact
 winget uninstall --id Clipchamp.Clipchamp_yxz26nhyzhsrt --exact
 winget uninstall --id Microsoft.BingNews_8wekyb3d8bbwe --exact
@@ -181,15 +184,42 @@ winget uninstall --id Microsoft.WindowsSoundRecorder_8wekyb3d8bbwe --exact
 winget uninstall --id Microsoft.YourPhone_8wekyb3d8bbwe --exact
 winget uninstall --id Microsoft.ZuneMusic_8wekyb3d8bbwe --exact
 winget uninstall --id MicrosoftCorporationII.QuickAssist_8wekyb3d8bbwe --exact
-winget uninstall --name "3D Viewer" --exact
+winget uninstall --name '3D Viewer' --exact
 
 wsl --install --no-distribution --no-launch
 
 # Enable Windows Sandbox
 Enable-WindowsOptionalFeature -FeatureName "Containers-DisposableClientVM" -All -Online -NoRestart
 
-# Set the Windows Time service to start automatically:
-Set-Service -Name W32Time -StartupType Automatic
-
 # Generate a self-signed certificate to enable HTTPS in development:
 dotnet dev-certs https --trust
+
+function TryDisable-Service {
+    param (
+        [string]$ServiceName
+    )
+
+    if (-not (Get-Service -Name $ServiceName -ErrorAction SilentlyContinue)) {
+        Write-Host "The service '$ServiceName' does not exist."
+        return
+    }
+
+    Set-Service -Name $ServiceName -StartupType Disabled -ErrorAction SilentlyContinue -PassThru | Stop-Service -ErrorAction SilentlyContinue
+
+    Write-Host "The service '$ServiceName' has been stopped and disabled."
+}
+
+function TryDisable-ScheduledTask {
+    param (
+        [string]$TaskName
+    )
+
+    if (-not (Get-ScheduledTask -TaskName $TaskName -ErrorAction SilentlyContinue)) {
+        Write-Host "The scheduled task '$TaskName' does not exist."
+        return
+    }
+
+    Disable-ScheduledTaskCustom -TaskName $TaskName
+
+    Write-Host "The scheduled task '$TaskName' has been disabled."
+}
