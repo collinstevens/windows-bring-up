@@ -267,6 +267,7 @@ $WinGetSettingsFile = "$env:LOCALAPPDATA\Packages\Microsoft.DesktopAppInstaller_
 }
 '@ | Out-File "$WinGetSettingsFile"
 
+winget install --id k6.k6 --exact --accept-package-agreements --accept-source-agreements --source winget
 winget install --id 7zip.7zip --exact --accept-package-agreements --accept-source-agreements --source winget
 winget install --id Docker.DockerDesktop --exact --accept-package-agreements --accept-source-agreements --source winget
 winget install --id Git.Git --exact --accept-package-agreements --accept-source-agreements --source winget
