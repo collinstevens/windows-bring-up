@@ -305,7 +305,6 @@ winget install --id Microsoft.WindowsWDK.10.0.22621 --exact --accept-package-agr
 winget install --id Mozilla.Firefox --accept-package-agreements --accept-source-agreements --source winget
 winget install --id Python.Python.3.10 --exact --accept-package-agreements --accept-source-agreements --source winget
 winget install --id SlackTechnologies.Slack --exact --accept-package-agreements --accept-source-agreements --source winget
-winget install --id Spotify.Spotify --accept-package-agreements --accept-source-agreements --source winget
 winget install --id voidtools.Everything --exact --accept-package-agreements --accept-source-agreements --source winget
 
 # https://learn.microsoft.com/en-us/visualstudio/install/use-command-line-parameters-to-install-visual-studio?view=vs-2022#use-winget-to-install-or-modify-visual-studio
@@ -318,6 +317,7 @@ if ($IsPersonalMachine) {
     winget install --id Discord.Discord --exact --accept-package-agreements --accept-source-agreements --source winget
     winget install --id qBittorrent.qBittorrent --exact --accept-package-agreements --accept-source-agreements --source winget
     winget install --id Valve.Steam --exact --accept-package-agreements --accept-source-agreements --source winget
+    winget install --id Spotify.Spotify --accept-package-agreements --accept-source-agreements --source winget
 }
 
 winget uninstall --id 'OneNoteFreeRetail - en-us' --exact
