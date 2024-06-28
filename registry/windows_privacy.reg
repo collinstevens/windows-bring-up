@@ -6,6 +6,11 @@ Windows Registry Editor Version 5.00
 [HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo]
 "Enabled"=dword:0 ; Disable targeted advertising
 
+[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Search]
+"BingSearchEnabled"=dword:0
+"AllowSearchToUseLocation"=dword:0
+"CortanaConsent"=dword:0
+
 [HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Explorer]
 "DisableSearchBoxSuggestions"=dword:1 ; Turn off display of recent search entries in the File Explorer search box
 "NoSearchInternetTryHarderButton"=dword:1 ; Remove the Search the Internet "Search again" link
@@ -30,3 +35,7 @@ Windows Registry Editor Version 5.00
 "DisableWindowsSpotlightFeatures"=dword:1 ; Turn off all Windows spotlight features
 "ConfigureWindowsSpotlight"=dword:2 ; Configure Windows spotlight on lock screen
 "IncludeEnterpriseSpotlight"=dword:0 ; Configure Windows spotlight on lock screen
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Search]
+"AllowCortana"=dword:0
+"DisableWebSearch"=dword:1
