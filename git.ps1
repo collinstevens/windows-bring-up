@@ -2,6 +2,7 @@
 # git config --global user.email "github@collinstevens.com"
 git config --global core.autoclrf false
 git config --global init.defaultBranch master
+git config --global pull.ff only
 git config --global push.autoSetupRemote true
 git config --global rebase.autoSquash true
 git config --global rebase.updateRefs true
