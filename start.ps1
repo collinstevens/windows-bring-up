@@ -151,9 +151,6 @@ Write-Progress -Activity "Setting environment variables" -Status "Progress" -Per
 Set-EnvironmentVariableIfDifferent -Name 'PIP_CACHE_DIR' -Value "${DriveLetter}:\packages\pip" -Target Machine
 Write-Progress -Activity "Setting environment variables" -Status "Progress" -PercentComplete 56
 
-Set-EnvironmentVariableIfDifferent -Name 'PNPM_HOME' -Value "${DriveLetter}:\packages\pnpm" -Target Machine
-Write-Progress -Activity "Setting environment variables" -Status "Progress" -PercentComplete 64
-
 Set-EnvironmentVariableIfDifferent -Name 'VCPKG_DEFAULT_BINARY_CACHE' -Value "${DriveLetter}:\packages\vcpkg" -Target Machine
 Write-Progress -Activity "Setting environment variables" -Status "Progress" -PercentComplete 72
 
@@ -176,18 +173,6 @@ Write-Host "Environment variables have been set"
 # Create Dev Drive
 # diskpart /s create-dev-drive.diskpart
 # Get-Disk 2 | New-Volume -DriveLetter E -FriendlyName E | Format-Volume -DevDrive
-
-$MachineEnvironmentKey = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey('SYSTEM\CurrentControlSet\Control\Session Manager\Environment', $true)
-$MachinePath = $MachineEnvironmentKey.GetValue('Path', $null, [Microsoft.Win32.RegistryValueOptions]::DoNotExpandEnvironmentNames)
-$MachinePathSplit = $MachinePath -Split ';'
-
-if ($MachinePathSplit -notcontains '%PNPM_HOME%') {
-    $MachinePath += ';%PNPM_HOME%'
-}
-
-$MachineEnvironmentKey.SetValue('Path', $MachinePath, [Microsoft.Win32.RegistryValueKind]::ExpandString)
-
-Write-Host "PATH has been set"
 
 # Set the Windows Time service to start automatically:
 Set-Service -Name 'W32Time' -StartupType Automatic
